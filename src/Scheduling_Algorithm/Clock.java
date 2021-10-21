@@ -35,7 +35,7 @@ public class Clock {
                 temp1++;
             } else {
                 queue2[temp2] = temp;
-                temp2++;
+                temp2 = temp2 + 1;
             }
         }
         
