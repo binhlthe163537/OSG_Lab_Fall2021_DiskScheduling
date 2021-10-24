@@ -1,18 +1,16 @@
 /*
     SCAN - Disk Scheduling Algorithm (Elevator)
-
     scans down towards the nearest end and then when it hits the bottom,
     it scans up servicing the requests that it didn't get going down.
     If a request comes in after it has been scanned it will not be serviced
     until the process comes back down or moves back up.
-
  */
 package Scheduling_Algorithm;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class SCAN {
+public class Scan {
 
     public static void main() {
         Scanner input = new Scanner(System.in);

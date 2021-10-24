@@ -82,3 +82,5 @@ public class Round {
         System.out.println("Average wt is : " + sum2 / n);
     }
 }
+
+
