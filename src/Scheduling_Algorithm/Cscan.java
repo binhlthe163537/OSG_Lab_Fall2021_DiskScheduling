@@ -5,6 +5,9 @@
 */
 package Scheduling_Algorithm;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author Legion
@@ -14,8 +17,10 @@ public class Cscan {
     final static int HIGH = 199;
     
     public static void main() {
-        int[] queue = new int[20];
-        int[] queue1 = new int[20], queue2 = new int[20];
+        ArrayList<Integer> queue = new ArrayList<>();
+        ArrayList<Integer> queue1 = new ArrayList<>();
+        ArrayList<Integer> queue2 = new ArrayList<>();
+        
         int head, q_size;
         int seek = 0, diff, max, min, range, temp, temp1=0, temp2=0;
         float avg;
@@ -25,75 +30,45 @@ public class Cscan {
         
         for (int i = 0; i < q_size; i++) {
             temp = Validation.Inputter.inputInteger("", false);
-            //queue1 - elems greater than head , queue2 - elems less than head
+            //queue1 - elems greater than head
             if (temp >= head) {
-                queue1[temp1] = temp;
-                temp1++;
+                queue1.add(temp);
             } else {
-                queue2[temp2] = temp;
-                temp2++;
+                queue2.add(temp);
             }
         }
         
         //sort queue1 - increasing order
-        for (int i = 0; i < temp1-1; i++) {
-            for (int j = i+1; j<temp1; j++) {
-                if (queue1[i] > queue1[j]) {
-                    temp = queue1[i];
-                    queue1[i] = queue1[j];
-                    queue1[j] = temp;
-                }                
-            }
-        }
+        Collections.sort(queue1);
         
-        //sort queue2 - increasing order
-        for(int i=0; i<temp2-1; i++){
-            for(int j=i+1; j<temp2; j++){
-                if(queue2[i] > queue2[j]){
-                    temp = queue2[i];
-                    queue2[i] = queue2[j];
-                    queue2[j] = temp;
-                }
+        //sort queue2
+        Collections.sort(queue2);
+        queue.add(head);
+        if (Math.abs(head - LOW)<= Math.abs(head - HIGH)) {
+            for (int i = 0; i < queue1.size(); i++) {
+                queue.add(queue1.get(i));
             }
-        }
-        
-        //calculate closest edge
-        if(Math.abs(head-LOW) >= Math.abs(head-HIGH)){
-            int i;
-            int j;
-            
-            for(i=1,j=0; j<temp1; i++,j++){
-                queue[i] = queue1[j];
+            queue.add(HIGH);
+            queue.add(LOW);
+            for (int i = 0; i < queue2.size(); i++) {
+                queue.add(queue2.get(i));
             }
-
-                queue[i] = HIGH;
-                queue[i+1] = 0;
-
-            for(i=temp1+3, j=0; j<temp2; i++, j++){
-                queue[i] = queue2[j];
-            }
-
         } else {
-            int j;
-            int i;
-
-            for(i=1,j=temp2-1; j>=0; i++,j--){
-                queue[i] = queue2[j];
-            }
-
-                queue[i] = LOW;
-                queue[i+1] = HIGH;
-
-            for(i=temp2+3, j=temp1-1; j>=0; i++, j--){
-                queue[i] = queue1[j];
+            for (int i = 0; i < queue2.size(); i++) {
+                queue.add(queue2.get(i));
+            }    
+            
+            queue.add(LOW);
+            queue.add(HIGH);
+            for (int i = 0; i < queue1.size(); i++) {
+                queue.add(queue1.get(i));
             }
         }
         
-        queue[0] = head;
-        for (int j = 0; j < q_size; j++) {
-            diff = Math.abs(queue[j+1] - queue[j]);
+        for (int j = 0; j < queue.size() - 1; j++) {
+            diff = Math.abs(queue.get(j+1) - queue.get(j));
             seek += diff;
-            System.out.printf("Disk head moves from %d to %d with seek %d\n", queue[j], queue[j+1], diff);
+            System.out.printf("Disk head moves from %d to %d with seek %d\n", queue.get(j), queue.get(j+1), diff);
         }
 //range = max - min;
 //printf("Range is %d", range);
@@ -101,7 +76,5 @@ public class Cscan {
         System.out.println("Total seek time is " + seek);
         avg = seek/ (float) q_size;
         System.out.printf("Average seek time is %f\n", avg);
-        
     }
-  
 }
