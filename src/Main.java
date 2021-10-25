@@ -14,7 +14,7 @@ import Scheduling_Algorithm.*;
 public class Main {
     public static void main(String[] args) {
         System.out.println("==========Main Menu===========");
-        String[] ops = {"Round", "Scan", "SSTF", "FCFS","Clock","Lock","Cscan", "Exit"};
+        String[] ops = {"Round", "Scan", "SSTF", "FCFS","Clock","Lock", "Cscan", "Exit"};
         for (int i = 0; i < ops.length; i++) {
             System.out.println((i+1) + "-" + ops[i]);
         }
@@ -25,7 +25,7 @@ public class Main {
                 break;
             }
             case 2: {
-                SCAN.main();
+                Scan.main();
                 break;
             }
             case 3: {
@@ -33,7 +33,7 @@ public class Main {
                 break;
             }
             case 4: {
-                fcfs.main();
+                FCFS.main();
                 break;
             }
             case 5: {
