@@ -7,7 +7,7 @@ public class Round {
 
     public static void main() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Enter the no. of processes");
+        System.out.print("Enter the no. of processes: ");
         int n = in.nextInt();
         int[] at = new int[n];
         int[] bt = new int[n];
@@ -17,13 +17,13 @@ public class Round {
         Queue<Integer> rq = new LinkedList<>();
         int[] wt = new int[n];
         int[] tat = new int[n];
-        System.out.print("Enter the arrival time ");
+        System.out.println("Enter the arrival time: \t");
         int sum = 0;
         for (int i = 0; i < n; i++) {
             at[i] = in.nextInt();
         }
 
-        System.out.print("Enter the burst time ");
+        System.out.println("Enter the burst time: \t");
         for (int i = 0; i < n; i++) {
             bt[i] = in.nextInt();
             bts[i] = bt[i];
@@ -32,7 +32,7 @@ public class Round {
         for (int i = 0; i < n; i++) {
             sum = sum + bt[i];
         }
-        System.out.print("Enter the time quantum");
+        System.out.print("Enter the time quantum: \t");
         int tq = in.nextInt();
         int t = 0;
         int i = 0;
@@ -78,8 +78,8 @@ public class Round {
         for (int l = 0; l < n; l++) {
             System.out.println("p" + l + "  " + at[l] + "  " + bts[l] + "  " + ct[l] + "  " + tat[l] + "  " + wt[l]);
         }
-        System.out.println("Average tat is: " + sum1 / n);
-        System.out.println("Average wt is : " + sum2 / n);
+        System.out.printf("Average tat is: %.2f\n" , (double) sum1 / n);
+        System.out.printf("Average wt is : %.2f\n" , (double) sum2 / n);
     }
 }
 
