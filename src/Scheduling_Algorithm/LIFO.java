@@ -16,8 +16,6 @@ public class LIFO {
     final int LOW = 0;
     public static void main() {
         ArrayList<Integer> queue = new ArrayList<>();
-        ArrayList<Integer> queue1 = new ArrayList<>();
-        ArrayList<Integer> queue2 = new ArrayList<>();
 
         int head, q_size;
         int seek = 0, diff, temp;
