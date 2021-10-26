@@ -130,4 +130,15 @@ public class Inputter {
             }
         }
     }
+    
+    public static boolean isRanDom(String msg) {
+        boolean result;
+        while (true) {
+            String x = inputString(msg, false);
+            if (x.equalsIgnoreCase("y")) result = true;
+            else {
+                result = false;
+            }
+        }
+    }
 }

@@ -28,16 +28,20 @@ public class Clock {
         q_size = Validation.Inputter.inputInteger("Input the number of disk locations: \t", false);
         head = Validation.Inputter.inputInteger("Enter initial head position: \t", false);
         System.out.println("\n Enter disk positions to read: ");
-        
-        for (int i = 0; i < q_size; i++) {
-            temp = Validation.Inputter.inputInteger("", false);
-            //queue1 - elems greater than head
-            if (temp >= head) {
-                queue1.add(temp);
-            } else {
-                queue2.add(temp);
-            }
+        if (Validation.Inputter.isRanDom("You want to random " + q_size + " location(s)? (y/n)")) {
+//            myUtils.myLib.randomLocations(q_size);
+        } else {
+            for (int i = 0; i < q_size; i++) {
+                temp = Validation.Inputter.inputInteger("", false);
+                //queue1 - elems greater than head
+                if (temp >= head) {
+                    queue1.add(temp);
+                } else {
+                    queue2.add(temp);
+                }
         }
+        }    
+        
         
         //sort queue1 - increasing order
         Collections.sort(queue1);
