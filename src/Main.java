@@ -14,14 +14,14 @@ import Scheduling_Algorithm.*;
 public class Main {
     public static void main(String[] args) {
         System.out.println("==========Main Menu===========");
-        String[] ops = {"Round", "Scan", "SSTF", "FCFS","Clock","Lock", "Cscan", "Exit"};
+        String[] ops = {"LIFO", "Scan", "SSTF", "FCFS","Clock","Lock", "Cscan", "Exit"};
         for (int i = 0; i < ops.length; i++) {
             System.out.println((i+1) + "-" + ops[i]);
         }
         int choice = Validation.Inputter.inputIntegerInRange("Enter choice: ", 1, ops.length);
         switch(choice) {
             case 1: {
-                Round.main();
+                LIFO.main();
                 break;
             }
             case 2: {

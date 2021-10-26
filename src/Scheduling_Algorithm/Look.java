@@ -23,7 +23,7 @@ public class Look {
         ArrayList<Integer> queue2 = new ArrayList<>();
         
         int head, q_size;
-        int seek = 0, diff, max, min, range, temp, temp1=0, temp2=0;
+        int seek = 0, diff, temp;
         float avg;
         q_size = Validation.Inputter.inputInteger("Input the number of disk locations: \t", false);
         head = Validation.Inputter.inputInteger("Enter initial head position: \t", false);
