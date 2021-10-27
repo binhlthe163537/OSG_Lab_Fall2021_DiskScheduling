@@ -2,7 +2,9 @@ package Scheduling_Algorithm;
 
 import java.util.Scanner;
 
-public class FCFS {
+import MyInit.Init;
+
+public class  FCFS{
 
     public static void main() {
         Scanner input = new Scanner(System.in);
@@ -17,15 +19,29 @@ public class FCFS {
         System.out.println("Enter queue size: ");
         int qSize = Integer.parseInt(input.nextLine());
 
+        System.out.println("Enter initial head position: ");
+        head = Integer.parseInt(input.nextLine());
+
         queue = new int[qSize + 1];
 
         System.out.println("Input Queue elements: ");
-        for (int i = 1; i < qSize + 1; i++) {
-            queue[i] = Integer.parseInt(input.nextLine());
+        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n)")) 
+        {
+           Init.randomProcessToFile(qSize, "Process data.txt");
+           int[] buffer = Init.readTextFile("Process data.txt");
+           for(int i = 0; i < qSize; i++)
+           {
+               queue[i + 1] = buffer[i];
+           }
+        }
+        else
+        {
+            for (int i = 1; i < qSize + 1; i++) {
+                System.out.println("Enter location " + i + ": ");
+                queue[i] = Integer.parseInt(input.nextLine());
+            }
         }
 
-        System.out.println("Enter initial head position: ");
-        head = Integer.parseInt(input.nextLine());
 
         queue[0] = head;
 

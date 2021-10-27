@@ -10,6 +10,8 @@ package Scheduling_Algorithm;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import MyInit.Init;
+
 public class Scan {
 
     public static void main() {
@@ -28,25 +30,29 @@ public class Scan {
         head = Integer.parseInt(input.nextLine());
 
         System.out.println("Input elements in disk queue: ");
-        for (int i = 0; i < qSize; i++) {
-            queue[i] = Integer.parseInt(input.nextLine());
-        }
+        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n)")) 
+        {
+            Init.randomProcessToFile(qSize, "Process data.txt");
+            int[] buffer = Init.readTextFile("Process data.txt");
+            for (int i = 0; i < qSize; i++) 
+                queue[i] = buffer[i];
+        } 
+        else 
+            for (int i = 0; i < qSize; i++) 
+                queue[i] = Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false);
         queue[qSize] = head;
         //sort disk locations queue
         Arrays.sort(queue);
         dloc = Arrays.binarySearch(queue, head);
 
         for(int i = dloc; i < queue.length - 1; i++)
-        {
             System.out.println("Move " + queue[i] + " to " + queue[i + 1]);
-        }
 
         System.out.println("Move " + queue[queue.length - 1] + " to " + queue[dloc - 1]);
 
         for(int i = dloc - 1; i > 0; i--)
-        {
             System.out.println("Move " + queue[i] + " to " + queue[i - 1]);
-        }
+        
         seekTime = 2 * queue[queue.length - 1] - queue[dloc] - queue[0];
         avg = seekTime / (double)qSize;  
         System.out.println("Total seek time is " + seekTime);

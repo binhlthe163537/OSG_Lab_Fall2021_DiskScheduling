@@ -10,6 +10,8 @@ package Scheduling_Algorithm;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import MyInit.Init;
+
 /**
  *
  * @author Legion
@@ -25,19 +27,32 @@ public class Look {
         int head, q_size;
         int seek = 0, diff, temp;
         float avg;
-        q_size = Validation.Inputter.inputInteger("Input the number of disk locations: \t", false);
-        head = Validation.Inputter.inputInteger("Enter initial head position: \t", false);
-        System.out.println("\n Enter disk positions to read: ");
-        
-        for (int i = 0; i < q_size; i++) {
-            temp = Validation.Inputter.inputInteger("", false);
-            //queue1 - elems greater than head
-            if (temp >= head) {
-                queue1.add(temp);
-            } else {
-                queue2.add(temp);
+        q_size = Validation.Inputter.inputInteger("Input the number of disk locations: ", false);
+        head = Validation.Inputter.inputInteger("Enter initial head position: ", false);
+        System.out.println(" Enter disk positions to read: ");
+        if (Validation.Inputter.isRanDom("You want to random " + q_size + " location(s)? (y/n)")) 
+        {
+           Init.randomProcessToFile(q_size, "Process data.txt");
+           int[] buffer = Init.readTextFile("Process data.txt");
+           for (int i = 0; i < q_size; i++) 
+           {
+                //queue1 - elems greater than head
+                if (buffer[i] >= head) 
+                    queue1.add(buffer[i]);
+                else 
+                    queue2.add(buffer[i]);
             }
-        }
+        } 
+        else 
+            for (int i = 0; i < q_size; i++) 
+            {
+                temp = Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false);
+                //queue1 - elems greater than head
+                if (temp >= head) 
+                    queue1.add(temp);
+                else 
+                    queue2.add(temp);
+            }
         
         //sort queue1 - increasing order
         Collections.sort(queue1);
@@ -45,14 +60,17 @@ public class Look {
         //sort queue2
         Collections.sort(queue2);
         queue.add(head);
-        if (Math.abs(head - LOW)<= Math.abs(head - HIGH)) {
+        if (Math.abs(head - LOW)<= Math.abs(head - HIGH)) 
+        {
             for (int i = 0; i < queue1.size(); i++) {
                 queue.add(queue1.get(i));
             }
             for (int i = queue2.size()-1; i >= 0; i--) {
                 queue.add(queue2.get(i));
             }
-        } else {
+        } 
+        else 
+        {
             for (int i = 0; i < queue2.size(); i++) {
                 queue.add(queue2.get(i));
             }     
@@ -66,9 +84,7 @@ public class Look {
             seek += diff;
             System.out.printf("Disk head moves from %d to %d with seek %d\n", queue.get(j), queue.get(j+1), diff);
         }
-//range = max - min;
-//printf("Range is %d", range);
-//seek =  seek - (max - min);        
+     
         System.out.println("Total seek time is " + seek);
         avg = seek/ (float) q_size;
         System.out.printf("Average seek time is %f\n", avg);

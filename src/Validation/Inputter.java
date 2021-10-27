@@ -132,13 +132,12 @@ public class Inputter {
     }
     
     public static boolean isRanDom(String msg) {
-        boolean result;
-        while (true) {
+        while (true) 
+        {
             String x = inputString(msg, false);
-            if (x.equalsIgnoreCase("y")) result = true;
-            else {
-                result = false;
-            }
+            if (x.equalsIgnoreCase("y"))
+                return true;
+            return false;
         }
     }
 }
