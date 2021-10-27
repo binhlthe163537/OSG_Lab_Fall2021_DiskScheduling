@@ -20,10 +20,7 @@ public class Main {
         }
         int choice = Validation.Inputter.inputIntegerInRange("Enter choice: ", 1, ops.length);
         switch(choice) {
-            case 1: {
-                Round.main();
-                break;
-            }
+
             case 2: {
                 Scan.main();
                 break;

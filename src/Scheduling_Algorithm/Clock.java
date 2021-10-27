@@ -3,6 +3,8 @@ package Scheduling_Algorithm;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import MyInit.Init;
+
 /*
 C-LOOK Algorithm
   - Scans towards the nearest end and works it way to the last request in that direction
@@ -23,23 +25,35 @@ public class Clock {
         ArrayList<Integer> queue2 = new ArrayList<>();
         
         int head, q_size;
-        int seek = 0, diff, max, min, range, temp, temp1=0, temp2=0;
+        int seek = 0, diff,temp;
         float avg;
-        q_size = Validation.Inputter.inputInteger("Input the number of disk locations: \t", false);
-        head = Validation.Inputter.inputInteger("Enter initial head position: \t", false);
-        System.out.println("\n Enter disk positions to read: ");
-        if (Validation.Inputter.isRanDom("You want to random " + q_size + " location(s)? (y/n)")) {
-//            myUtils.myLib.randomLocations(q_size);
-        } else {
-            for (int i = 0; i < q_size; i++) {
-                temp = Validation.Inputter.inputInteger("", false);
+        q_size = Validation.Inputter.inputInteger("Input the number of disk locations: ", false);
+        head = Validation.Inputter.inputInteger("Enter initial head position: ", false);
+        System.out.println("Enter disk positions to read: ");
+        if (Validation.Inputter.isRanDom("You want to random " + q_size + " location(s)? (y/n)")) 
+        {
+           Init.randomProcessToFile(q_size, "Process data.txt");
+           int[] buffer = Init.readTextFile("Process data.txt");
+           for (int i = 0; i < q_size; i++) 
+           {
                 //queue1 - elems greater than head
-                if (temp >= head) {
+                if (buffer[i] >= head) 
+                    queue1.add(buffer[i]);
+                else 
+                    queue2.add(buffer[i]);
+            }
+        } 
+        else 
+        {
+            for (int i = 0; i < q_size; i++) 
+            {
+                temp = Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false);
+                //queue1 - elems greater than head
+                if (temp >= head) 
                     queue1.add(temp);
-                } else {
+                else 
                     queue2.add(temp);
-                }
-        }
+            }
         }    
         
         
@@ -69,10 +83,7 @@ public class Clock {
             diff = Math.abs(queue.get(j+1) - queue.get(j));
             seek += diff;
             System.out.printf("Disk head moves from %d to %d with seek %d\n", queue.get(j), queue.get(j+1), diff);
-        }
-//range = max - min;
-//printf("Range is %d", range);
-//seek =  seek - (max - min);        
+        }      
         System.out.println("Total seek time is " + seek);
         avg = seek/ (float) q_size;
         System.out.printf("Average seek time is %f\n", avg);
