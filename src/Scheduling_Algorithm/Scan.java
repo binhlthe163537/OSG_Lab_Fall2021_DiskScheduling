@@ -38,6 +38,7 @@ public class Scan {
         {
             Init.randomProcessToFile(qSize, "Process data.txt");
             int[] buffer = Init.readTextFile("Process data.txt");
+            System.out.println("Random Successfully! Please view in Process data.txt\n");
             for (int i = 0; i < qSize; i++) 
                 queue[i] = buffer[i];
         } 
@@ -84,5 +85,7 @@ public class Scan {
         pWriter.close();
         writer.close();
         input.close();
+        
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 }

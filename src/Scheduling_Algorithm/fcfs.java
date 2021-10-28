@@ -9,8 +9,8 @@ public class  FCFS{
     public static void main() {
         Scanner input = new Scanner(System.in);
         int seek = 0;
-        int diff = 0;
-        int head = 0;
+        int diff;
+        int head;
         float avg;
         int[] queue;
 
@@ -29,6 +29,8 @@ public class  FCFS{
         {
            Init.randomProcessToFile(qSize, "Process data.txt");
            int[] buffer = Init.readTextFile("Process data.txt");
+           System.out.println("Random Successfully! Please view in Process data.txt\n");
+           
            for(int i = 0; i < qSize; i++)
            {
                queue[i + 1] = buffer[i];
@@ -57,6 +59,7 @@ public class  FCFS{
         
         MyInit.Init.saveProcessToFile(queue, "Output.txt", qSize);
         input.close();
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 
 }

@@ -34,6 +34,8 @@ public class Clock {
         {
            Init.randomProcessToFile(q_size, "Process data.txt");
            int[] buffer = Init.readTextFile("Process data.txt");
+           System.out.println("Random Successfully! Please view in Process data.txt\n");
+           
            for (int i = 0; i < q_size; i++) 
            {
                 //queue1 - elems greater than head
@@ -82,5 +84,6 @@ public class Clock {
         System.out.printf("Average seek time is %f\n", avg);
         
         MyInit.Init.saveProcessToFile(queue, "Output.txt", true, q_size);
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 }

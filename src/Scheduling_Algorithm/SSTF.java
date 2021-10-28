@@ -36,6 +36,7 @@ public class SSTF {
         {
             Init.randomProcessToFile(qSize, "Process data.txt");
             int[] buffer = Init.readTextFile("Process data.txt");
+            System.out.println("Random Successfully! Please view in Process data.txt\n");
             for (int i = 0; i < qSize; i++) 
                 queue.add(buffer[i]);
         } 
@@ -75,5 +76,6 @@ public class SSTF {
         writer.close();
         
         input.close();
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 }

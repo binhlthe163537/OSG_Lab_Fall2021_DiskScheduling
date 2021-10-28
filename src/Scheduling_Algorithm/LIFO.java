@@ -28,6 +28,8 @@ public class LIFO {
         {
             Init.randomProcessToFile(qSize, "Process data.txt");
             int[] buffer = Init.readTextFile("Process data.txt");
+            
+            System.out.println("Random Successfully! Please view in Process data.txt\n");
             for (int i = 0; i < qSize; i++) 
                 queue.add(buffer[i]);
         } 
@@ -48,6 +50,7 @@ public class LIFO {
         System.out.printf("Average seek time is %f\n", avg);
         
         MyInit.Init.saveProcessToFile(queue, "Output.txt", false, qSize);
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 }
 
