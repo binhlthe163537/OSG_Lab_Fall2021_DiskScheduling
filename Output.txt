@@ -1,0 +1,7 @@
+Move 50 to 142 with seek 92
+Move 142 to 178 with seek 36
+Move 178 to 192 with seek 14
+Move 192 to 199 with seek 7
+Move 199 to 9 with seek 190
+Total Seek time is 339
+Average seek time is 67.80000305175781

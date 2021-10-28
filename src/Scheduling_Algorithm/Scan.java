@@ -11,14 +11,18 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import MyInit.Init;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Scan {
 
-    public static void main() {
+    public static void main() throws IOException {
         Scanner input = new Scanner(System.in);
         int head;
         int[] queue;
-        int seekTime;
+        int seekTime = 0;
         double avg;
         int dloc = 0;  //location of disk(head) in arr
 
@@ -45,18 +49,40 @@ public class Scan {
         Arrays.sort(queue);
         dloc = Arrays.binarySearch(queue, head);
 
-        for(int i = dloc; i < queue.length - 1; i++)
-            System.out.println("Move " + queue[i] + " to " + queue[i + 1]);
-
-        System.out.println("Move " + queue[queue.length - 1] + " to " + queue[dloc - 1]);
-
-        for(int i = dloc - 1; i > 0; i--)
-            System.out.println("Move " + queue[i] + " to " + queue[i - 1]);
+        File file = new File("Output.txt");
+        FileWriter writer;
+        writer = new FileWriter(file);
+        PrintWriter pWriter = new PrintWriter(writer);
         
-        seekTime = 2 * queue[queue.length - 1] - queue[dloc] - queue[0];
+        for(int i = dloc; i < queue.length - 1; i++){
+            System.out.println("Move " + queue[i] + " to " + queue[i + 1]);
+            pWriter.println("Move " + queue[i] + " to " + queue[i + 1]);
+            seekTime += Math.abs(queue[i] - queue[i+1]);
+        }            
+            
+        
+        System.out.println("Move " + queue[queue.length - 1] + " to 199");
+        pWriter.println("Move " + queue[queue.length - 1] + " to 199");
+        seekTime += Math.abs(199 - queue[queue.length - 1]);
+        
+        System.out.println("Move 199" + " to " + queue[dloc - 1]);
+        pWriter.println("Move 199" + " to " + queue[dloc - 1]);
+        seekTime += Math.abs(199 - queue[dloc-1]);
+        
+        for(int i = dloc - 1; i > 0; i--){
+            System.out.println("Move " + queue[i] + " to " + queue[i - 1]);
+            pWriter.println("Move " + queue[i] + " to " + queue[i - 1]);
+            seekTime += Math.abs(queue[i] - queue[i-1]);
+        }
+            
         avg = seekTime / (double)qSize;  
         System.out.println("Total seek time is " + seekTime);
         System.out.println("Average seek time is " + avg);
+        pWriter.println("Total seek time is " + seekTime);
+        pWriter.println("Average seek time is " + avg);
+        
+        pWriter.close();
+        writer.close();
         input.close();
     }
 }

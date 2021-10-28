@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -84,7 +85,72 @@ public class Init {
         {
             System.out.println(e);
         }
-        
-
+    }
+    public static void saveProcessToFile(ArrayList<Integer> queue , String filename, boolean increasingOrder, int qSize)
+    {
+  
+        File file = new File(filename);
+        FileWriter writer;
+        int seek = 0;
+        try 
+        {
+            writer = new FileWriter(file);
+            PrintWriter pWriter = new PrintWriter(writer);
+            if (increasingOrder){
+                for(int i = 0; i < queue.size() - 1; i++)
+                {
+                    int diff = Math.abs(queue.get(i+1) - queue.get(i));
+                    seek += diff;
+                    pWriter.println("Move " + queue.get(i) + " to " + queue.get(i+1) + " with seek " + diff);
+                } 
+                pWriter.println("Total Seek time is " + seek);
+                double avg = seek / (float) qSize;
+                pWriter.println("Average seek time is " + avg);
+            } else {
+                for(int i = queue.size()-1; i > 0; i--)
+                {
+                    int diff = Math.abs(queue.get(i) - queue.get(i-1));
+                    seek += diff;
+                    pWriter.println("Move " + queue.get(i) + " to " + queue.get(i-1) + " with seek " + diff);
+                } 
+                pWriter.println("Total Seek time is " + seek);
+                double avg = seek / (float) qSize;
+                pWriter.println("Average seek time is " + avg);
+            }
+            pWriter.close();
+            writer.close();
+        } 
+        catch (IOException e) 
+        {
+            System.out.println(e);
+        }
+    }
+    
+    public static void saveProcessToFile(int[] queue , String filename, int qSize)
+    {
+  
+        File file = new File(filename);
+        FileWriter writer;
+        int seek = 0;
+        try 
+        {
+            writer = new FileWriter(file);
+            PrintWriter pWriter = new PrintWriter(writer);
+            for(int i = 0; i < qSize; i++)
+            {
+                int diff = Math.abs(queue[i+1] - queue[i]);
+                seek += diff;
+                pWriter.println("Move " + queue[i] + " to " + queue[i+1] + " with seek " + diff);
+            } 
+            pWriter.println("Total Seek time is " + seek);
+            double avg = seek / (float) (qSize);
+            pWriter.println("Average seek time is " + avg);
+            pWriter.close();
+            writer.close();
+        } 
+        catch (IOException e) 
+        {
+            System.out.println(e);
+        }
     }
 }

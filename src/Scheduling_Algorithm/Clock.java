@@ -63,21 +63,14 @@ public class Clock {
         //sort queue2
         Collections.sort(queue2);
         queue.add(head);
-        if (Math.abs(head - LOW)<= Math.abs(head - HIGH)) {
+        {
             for (int i = 0; i < queue1.size(); i++) {
                 queue.add(queue1.get(i));
             }
             for (int i = 0; i < queue2.size(); i++) {
                 queue.add(queue2.get(i));
             }
-        } else {
-            for (int i = 0; i < queue2.size(); i++) {
-                queue.add(queue2.get(i));
-            }     
-            for (int i = 0; i < queue1.size(); i++) {
-                queue.add(queue1.get(i));
-            }
-        }
+        } 
         
         for (int j = 0; j < queue.size() - 1; j++) {
             diff = Math.abs(queue.get(j+1) - queue.get(j));
@@ -87,5 +80,7 @@ public class Clock {
         System.out.println("Total seek time is " + seek);
         avg = seek/ (float) q_size;
         System.out.printf("Average seek time is %f\n", avg);
+        
+        MyInit.Init.saveProcessToFile(queue, "Output.txt", true, q_size);
     }
 }

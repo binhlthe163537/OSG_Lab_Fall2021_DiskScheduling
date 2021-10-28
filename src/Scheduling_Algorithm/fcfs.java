@@ -49,12 +49,13 @@ public class  FCFS{
             diff = Math.abs(queue[j + 1] - queue[j]);
             seek += diff;
             System.out.println("Move " + queue[j] + " to " + queue[j + 1] + " with seek " + diff);
-
         }
 
         System.out.println("Total Seek time is " + seek);
         avg = seek / (float) qSize;
         System.out.println("Average seek time is " + avg);
+        
+        MyInit.Init.saveProcessToFile(queue, "Output.txt", qSize);
         input.close();
     }
 

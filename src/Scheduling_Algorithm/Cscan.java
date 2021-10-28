@@ -61,24 +61,22 @@ public class Cscan {
         //sort queue2
         Collections.sort(queue2);
         queue.add(head);
-        if (Math.abs(head - LOW)<= Math.abs(head - HIGH)) {
-            for (int i = 0; i < queue1.size(); i++) {
-                queue.add(queue1.get(i));
-            }
-            queue.add(HIGH);
-            queue.add(LOW);
+        if (queue1.isEmpty()) {
+            Collections.reverse(queue2);
             for (int i = 0; i < queue2.size(); i++) {
                 queue.add(queue2.get(i));
             }
         } else {
-            for (int i = 0; i < queue2.size(); i++) {
-                queue.add(queue2.get(i));
-            }    
-            
-            queue.add(LOW);
-            queue.add(HIGH);
             for (int i = 0; i < queue1.size(); i++) {
                 queue.add(queue1.get(i));
+            }
+            
+            if (!queue2.isEmpty()) {
+                queue.add(HIGH);
+                queue.add(LOW);
+            }
+            for (int i = 0; i < queue2.size(); i++) {
+                queue.add(queue2.get(i));
             }
         }
         
@@ -90,5 +88,7 @@ public class Cscan {
         System.out.println("Total seek time is " + seek);
         avg = seek/ (float) q_size;
         System.out.printf("Average seek time is %f\n", avg);
+        
+        MyInit.Init.saveProcessToFile(queue,"Output.txt", true, q_size);
     }
 }

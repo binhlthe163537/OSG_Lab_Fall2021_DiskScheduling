@@ -25,11 +25,19 @@ public class Main {
                 break;
             }
             case 2: {
-                Scan.main();
+                try{
+                    Scan.main();
+                } catch (Exception e) { 
+                }
+                
                 break;
             }
             case 3: {
-                SSTF.main();
+                try {
+                    SSTF.main();
+                } catch (Exception e){ 
+                    System.err.println(e);
+                }
                 break;
             }
             case 4: {

@@ -46,6 +46,8 @@ public class LIFO {
         System.out.println("Total seek time is " + seek);
         avg = seek / (float) qSize;
         System.out.printf("Average seek time is %f\n", avg);
+        
+        MyInit.Init.saveProcessToFile(queue, "Output.txt", false, qSize);
     }
 }
 
