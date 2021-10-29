@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import MyInit.Init;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class SSTF {
 
-    public static void main() {
+    public static void main(){
         Scanner input = new Scanner(System.in);
         ArrayList<Integer> queue = new ArrayList<>();
         int[] queue2;
@@ -28,18 +32,23 @@ public class SSTF {
         head = Integer.parseInt(input.nextLine());
         
         System.out.println("Input Elements: ");
-        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n)")) 
+        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n): ")) 
         {
             Init.randomProcessToFile(qSize, "Process data.txt");
             int[] buffer = Init.readTextFile("Process data.txt");
+            System.out.println("Random Successfully! Please view in Process data.txt\n");
             for (int i = 0; i < qSize; i++) 
                 queue.add(buffer[i]);
         } 
         else 
             for (int i = 0; i < qSize; i++) 
                 queue.add(Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false));
-
-
+        try
+        {
+            File file = new File("Output.txt");
+        FileWriter writer;
+        writer = new FileWriter(file);
+        PrintWriter pWriter = new PrintWriter(writer);
 
         for (int i = 0; i < qSize; i++) {
             int diff = Math.abs(head - queue.get(0));
@@ -51,6 +60,7 @@ public class SSTF {
                     buffer = j;
                 }
             System.out.println("Move " + head + " to " + queue.get(buffer) + " with seek " + diff);
+            pWriter.println("Move " + head + " to " + queue.get(buffer) + " with seek " + diff);
             head = queue.get(buffer);
             queue2[i] = diff;
             queue.remove(buffer);
@@ -59,8 +69,19 @@ public class SSTF {
         for (int i = 0 ; i < qSize ; i++)
             seek += queue2[i];
         System.out.println("Total seek time is " + seek);
+        pWriter.println("Total Seek time is " + seek);
         avg = seek / (float) qSize;
         System.out.println("Average seek time is " + avg);
+        pWriter.println("Average seek time is " + avg);
+        
+        pWriter.close();
+        writer.close();
+    }
+    catch(IOException e)
+    {
+        System.out.println(e);
+    }
         input.close();
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 }

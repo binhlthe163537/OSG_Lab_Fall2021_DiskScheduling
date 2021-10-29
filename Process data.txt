@@ -1,0 +1,7 @@
+Process number 1: 122
+Process number 2: 18
+Process number 3: 118
+Process number 4: 188
+Process number 5: 24
+Process number 6: 50
+Process number 7: 106

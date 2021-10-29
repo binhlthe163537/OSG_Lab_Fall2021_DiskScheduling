@@ -6,7 +6,6 @@
 package Validation;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  *
@@ -20,7 +19,7 @@ public class Inputter {
     private final static String errM_NotAnPositiveInteger = "Input must be a positive integer!";
     private final static String errM_NotMatches = "Please enter the true form ";
     private final static String errM_NotInRange = "Please enter number in range";
-
+    static Scanner sc = new Scanner(System.in);
     /**
      *
      * @param msg
@@ -28,7 +27,7 @@ public class Inputter {
      * @return
      */
     public static String inputString(String msg, boolean isEmpty) {
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         String result;
         while (true) {
             try {
@@ -41,6 +40,7 @@ public class Inputter {
                         System.err.println(errM_Null);
                     }
                 } else {
+                        sc = new Scanner(System.in);
                         return result;
                     }
                 } catch (Exception e) {
@@ -100,12 +100,9 @@ public class Inputter {
      * @return
      */
     public static String normalize(String s) {
-        StringTokenizer stk = new StringTokenizer(s, " ");
-        String result = stk.nextToken();
-        while (stk.hasMoreElements()) {
-            result += " " + stk.nextToken();
-        }
-        return result;
+        while(s.contains("  "))
+            s = s.replaceFirst("  ", " ");
+        return s;
     }
 
     /**

@@ -5,12 +5,11 @@ import java.util.Scanner;
 import MyInit.Init;
 
 public class FCFS {
-
     public static void main() {
         Scanner input = new Scanner(System.in);
         int seek = 0;
-        int diff = 0;
-        int head = 0;
+        int diff;
+        int head;
         float avg;
         int[] queue;
 
@@ -25,7 +24,7 @@ public class FCFS {
         queue = new int[qSize + 1];
 
         System.out.println("Input Queue elements: ");
-        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n)")) 
+        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n): ")) 
         {
            Init.randomProcessToFile(qSize, "Process data.txt");
            int[] buffer = Init.readTextFile("Process data.txt");
@@ -49,13 +48,14 @@ public class FCFS {
             diff = Math.abs(queue[j + 1] - queue[j]);
             seek += diff;
             System.out.println("Move " + queue[j] + " to " + queue[j + 1] + " with seek " + diff);
-
         }
 
         System.out.println("Total Seek time is " + seek);
         avg = seek / (float) qSize;
         System.out.println("Average seek time is " + avg);
-        input.close();
+        
+        MyInit.Init.saveProcessToFile(queue, "Output.txt", qSize);
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 
 }

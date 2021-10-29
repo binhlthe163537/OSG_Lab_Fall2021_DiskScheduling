@@ -14,38 +14,58 @@ import Scheduling_Algorithm.*;
 public class Main {
     public static void main(String[] args) {
         System.out.println("==========Main Menu===========");
-        String[] ops = {"Round", "Scan", "SSTF", "FCFS","Clock","Lock", "Cscan", "Exit"};
-        for (int i = 0; i < ops.length; i++) {
-            System.out.println((i+1) + "-" + ops[i]);
+        String[] ops1 = { "LIFO", "Scan", "SSTF", "FCFS", "Clock", "Lock", "Cscan", "Exit" };
+        String[] ops2 = { "Back to menu", "Exit" };
+        int choice1 = 0;
+        int choice2 = 0;
+        while (choice1 < 8 || choice2 < 3)
+        {
+            choice1 = MyInit.Menu.choice(ops1);
+            switch (choice1) 
+            {
+                case 1: 
+                {
+                    LIFO.main();
+                    choice2 = MyInit.Menu.choice(ops2);
+                    break;
+                }
+                case 2: 
+                {
+                    Scan.main();
+                    choice2 = MyInit.Menu.choice(ops2);
+                    break;
+                }
+                case 3: 
+                {
+                    SSTF.main();
+                    choice2 = MyInit.Menu.choice(ops2);
+                    break;
+                }
+                case 4: 
+                {
+                    FCFS.main();
+                    choice2 = MyInit.Menu.choice(ops2);
+                    break;
+                }
+                case 5: 
+                {
+                    Clock.main();
+                    choice2 = MyInit.Menu.choice(ops2);
+                    break;
+                }
+                case 6: 
+                {
+                    Look.main();
+                    choice2 = MyInit.Menu.choice(ops2);
+                    break;
+                }
+                case 7: 
+                {
+                    Cscan.main();
+                    choice2 = MyInit.Menu.choice(ops2);
+                    break;
+                }
+            }
         }
-        int choice = Validation.Inputter.inputIntegerInRange("Enter choice: ", 1, ops.length);
-        switch(choice) {
-
-            case 2: {
-                Scan.main();
-                break;
-            }
-            case 3: {
-                SSTF.main();
-                break;
-            }
-            case 4: {
-                FCFS.main();
-                break;
-            }
-            case 5: {
-                Clock.main();
-                break;
-            }
-            case 6: {
-                Look.main();
-                break;
-            }
-            case 7: {
-                Cscan.main();
-                break;
-            }
-        }
-        
     }
 }

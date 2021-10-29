@@ -11,14 +11,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import MyInit.Init;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Scan {
+
+    final static int LOW = 0;
+    final static int HIGH = 199;
 
     public static void main() {
         Scanner input = new Scanner(System.in);
         int head;
         int[] queue;
-        int seekTime;
+        int seekTime = 0;
         double avg;
         int dloc = 0;  //location of disk(head) in arr
 
@@ -30,10 +37,11 @@ public class Scan {
         head = Integer.parseInt(input.nextLine());
 
         System.out.println("Input elements in disk queue: ");
-        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n)")) 
+        if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n): ")) 
         {
             Init.randomProcessToFile(qSize, "Process data.txt");
             int[] buffer = Init.readTextFile("Process data.txt");
+            System.out.println("Random Successfully! Please view in Process data.txt\n");
             for (int i = 0; i < qSize; i++) 
                 queue[i] = buffer[i];
         } 
@@ -45,18 +53,47 @@ public class Scan {
         Arrays.sort(queue);
         dloc = Arrays.binarySearch(queue, head);
 
-        for(int i = dloc; i < queue.length - 1; i++)
-            System.out.println("Move " + queue[i] + " to " + queue[i + 1]);
-
-        System.out.println("Move " + queue[queue.length - 1] + " to " + queue[dloc - 1]);
-
-        for(int i = dloc - 1; i > 0; i--)
-            System.out.println("Move " + queue[i] + " to " + queue[i - 1]);
+        try
+        {
+            File file = new File("Output.txt");
+        FileWriter writer;
+        writer = new FileWriter(file);
+        PrintWriter pWriter = new PrintWriter(writer);
         
-        seekTime = 2 * queue[queue.length - 1] - queue[dloc] - queue[0];
+        for(int i = dloc; i < queue.length - 1; i++){
+            System.out.println("Move " + queue[i] + " to " + queue[i + 1]);
+            pWriter.println("Move " + queue[i] + " to " + queue[i + 1]);
+            seekTime += Math.abs(queue[i] - queue[i+1]);
+        }            
+            
+        
+        System.out.println("Move " + queue[queue.length - 1] + " to " + HIGH);
+        pWriter.println("Move " + queue[queue.length - 1] + " to " + HIGH);
+        seekTime += Math.abs(HIGH - queue[queue.length - 1]);
+        
+        System.out.println("Move " + HIGH + " to " + queue[dloc - 1]);
+        pWriter.println("Move " + HIGH + " to " + queue[dloc - 1]);
+        seekTime += Math.abs(HIGH - queue[dloc-1]);
+        
+        for(int i = dloc - 1; i > 0; i--){
+            System.out.println("Move " + queue[i] + " to " + queue[i - 1]);
+            pWriter.println("Move " + queue[i] + " to " + queue[i - 1]);
+            seekTime += Math.abs(queue[i] - queue[i-1]);
+        }
+            
         avg = seekTime / (double)qSize;  
         System.out.println("Total seek time is " + seekTime);
         System.out.println("Average seek time is " + avg);
-        input.close();
+        pWriter.println("Total seek time is " + seekTime);
+        pWriter.println("Average seek time is " + avg);
+        
+        pWriter.close();
+        writer.close();
+    }
+    catch(IOException e)
+    {
+       System.out.println(e);
+    }
+        System.out.println("\nData are successfully saved in Output.txt");
     }
 }

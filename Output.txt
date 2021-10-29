@@ -1,0 +1,10 @@
+Move 60 to 106
+Move 106 to 118
+Move 118 to 122
+Move 122 to 188
+Move 188 to 199
+Move 199 to 50
+Move 50 to 24
+Move 24 to 18
+Total seek time is 320
+Average seek time is 45.714285714285715
