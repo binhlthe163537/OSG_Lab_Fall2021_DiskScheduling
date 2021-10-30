@@ -17,7 +17,7 @@ public class Main {
         String[] ops2 = { "Back to menu", "Exit" };
         int choice1 = 0;
         int choice2 = 0;
-        while (choice1 < 8 || choice2 < 2)
+        while (choice2 < 2)
         {
             choice1 = MyInit.Menu.choice(ops1, "Main Menu");
             switch (choice1) 
