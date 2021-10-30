@@ -34,7 +34,7 @@ public class FCFS {
         else
         {
             for (int i = 1; i < qSize + 1; i++) {
-                queue[i] = Validation.Inputter.inputIntegerInRange("Enter location " + (i + 1) + ": ", LOW, HIGH);
+                queue[i] = Validation.Inputter.inputIntegerInRange("Enter location " + (i) + ": ", LOW, HIGH);
             }
         }
 
