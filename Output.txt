@@ -1,10 +1,36 @@
-Move 60 to 106
-Move 106 to 118
-Move 118 to 122
-Move 122 to 188
-Move 188 to 199
-Move 199 to 50
-Move 50 to 24
-Move 24 to 18
-Total seek time is 320
-Average seek time is 45.714285714285715
+Move 40 to 22 with seek 18
+Move 22 to 11 with seek 11
+Move 11 to 84 with seek 73
+Move 84 to 149 with seek 65
+Move 149 to 1 with seek 148
+Move 1 to 20 with seek 19
+Move 20 to 51 with seek 31
+Move 51 to 151 with seek 100
+Move 151 to 9 with seek 142
+Move 9 to 62 with seek 53
+Move 62 to 140 with seek 78
+Move 140 to 176 with seek 36
+Move 176 to 147 with seek 29
+Move 147 to 177 with seek 30
+Move 177 to 34 with seek 143
+Move 34 to 24 with seek 10
+Move 24 to 55 with seek 31
+Move 55 to 99 with seek 44
+Move 99 to 144 with seek 45
+Move 144 to 184 with seek 40
+Move 184 to 52 with seek 132
+Move 52 to 44 with seek 8
+Move 44 to 81 with seek 37
+Move 81 to 153 with seek 72
+Move 153 to 192 with seek 39
+Move 192 to 58 with seek 134
+Move 58 to 125 with seek 67
+Move 125 to 24 with seek 101
+Move 24 to 75 with seek 51
+Move 75 to 163 with seek 88
+Move 163 to 118 with seek 45
+Move 118 to 73 with seek 45
+Move 73 to 19 with seek 54
+Move 19 to 121 with seek 102
+Total Seek time is 2121
+Average seek time is 62.382354736328125
