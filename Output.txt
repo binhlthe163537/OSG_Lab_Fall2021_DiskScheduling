@@ -1,0 +1,10 @@
+Move 1 to 34
+Move 34 to 34
+Move 34 to 67
+Move 67 to 345
+Move 345 to 546
+Move 546 to 546
+Move 546 to 678
+Move 678 to 199
+Total seek time is 1156
+Average seek time is 165.14285714285714
