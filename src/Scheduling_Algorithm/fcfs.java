@@ -5,6 +5,8 @@ import java.util.Scanner;
 import MyInit.Init;
 
 public class FCFS {
+    final static int LOW = 0;
+    final static int HIGH = 199;
     public static void main() {
         Scanner input = new Scanner(System.in);
         int seek = 0;
@@ -36,8 +38,7 @@ public class FCFS {
         else
         {
             for (int i = 1; i < qSize + 1; i++) {
-                System.out.println("Enter location " + i + ": ");
-                queue[i] = Integer.parseInt(input.nextLine());
+                queue[i] = Validation.Inputter.inputIntegerInRange("Enter location " + (i + 1) + ": ", LOW, HIGH);
             }
         }
 

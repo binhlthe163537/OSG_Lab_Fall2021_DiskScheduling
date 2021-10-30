@@ -45,7 +45,7 @@ public class Scan {
                 queue[i] = buffer[i];
         } else
             for (int i = 0; i < qSize; i++)
-                queue[i] = Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false);
+                queue[i] = Validation.Inputter.inputIntegerInRange("Enter location " + (i + 1) + ": ", LOW, HIGH);
 
         queue[qSize] = head;
         // sort disk locations queue

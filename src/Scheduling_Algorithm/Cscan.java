@@ -47,7 +47,7 @@ public class Cscan {
         {
             for (int i = 0; i < q_size; i++) 
             {
-                temp = Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false);
+                temp = Validation.Inputter.inputIntegerInRange("Enter location " + (i + 1) + ": ", LOW, HIGH);
                 //queue1 - elems greater than head
                 if (temp >= head) 
                     queue1.add(temp);

@@ -12,8 +12,8 @@ import MyInit.Init;
  * @author Legion
  */
 public class LIFO {
-    final int HIGH = 199;
-    final int LOW = 0;
+    static final int HIGH = 199;
+    static final int LOW = 0;
     public static void main() {
         ArrayList<Integer> queue = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class LIFO {
         } 
         else 
             for (int i = 0; i < qSize; i++) 
-                queue.add(Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false));
+                queue.add(Validation.Inputter.inputIntegerInRange("Enter location " + (i + 1) + ": ", LOW, HIGH));
         queue.add(head);
         
 

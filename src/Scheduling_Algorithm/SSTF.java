@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class SSTF {
-
+    final static int LOW = 0;
+    final static int HIGH = 199;
     public static void main(){
         Scanner input = new Scanner(System.in);
         ArrayList<Integer> queue = new ArrayList<>();
@@ -42,7 +43,7 @@ public class SSTF {
         } 
         else 
             for (int i = 0; i < qSize; i++) 
-                queue.add(Validation.Inputter.inputInteger("Enter location " + (i + 1) + ": ", false));
+                queue.add(Validation.Inputter.inputIntegerInRange("Enter location " + (i + 1) + ": ", LOW, HIGH));
         try
         {
             File file = new File("Output.txt");
