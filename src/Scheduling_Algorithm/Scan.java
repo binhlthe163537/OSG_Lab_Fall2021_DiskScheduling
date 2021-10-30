@@ -8,7 +8,6 @@
 package Scheduling_Algorithm;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 import MyInit.Init;
 import java.io.File;
@@ -22,19 +21,16 @@ public class Scan {
     final static int HIGH = 199;
 
     public static void main() {
-        Scanner input = new Scanner(System.in);
         int head;
         int[] queue;
         int seekTime = 0;
         double avg;
         int dloc = 0; // location of disk(head) in arr
 
-        System.out.print("Input no of disk locations: ");
-        int qSize = Integer.parseInt(input.nextLine());
+        int qSize = Validation.Inputter.inputInteger("Input no of disk locations: ", false);
 
         queue = new int[qSize + 1];
-        System.out.print("Enter head position: ");
-        head = Integer.parseInt(input.nextLine());
+        head = Validation.Inputter.inputInteger("Enter head position: ", false);
 
         System.out.println("Input elements in disk queue: ");
         if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n): ")) {

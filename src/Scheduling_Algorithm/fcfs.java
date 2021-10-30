@@ -1,6 +1,5 @@
 package Scheduling_Algorithm;
 
-import java.util.Scanner;
 
 import MyInit.Init;
 
@@ -8,7 +7,6 @@ public class FCFS {
     final static int LOW = 0;
     final static int HIGH = 199;
     public static void main() {
-        Scanner input = new Scanner(System.in);
         int seek = 0;
         int diff;
         int head;
@@ -17,11 +15,9 @@ public class FCFS {
 
         System.out.println("FCFS Disk Scheduling");
 
-        System.out.println("Enter queue size: ");
-        int qSize = Integer.parseInt(input.nextLine());
+        int qSize = Validation.Inputter.inputInteger("Enter queue size: ", false);
 
-        System.out.println("Enter initial head position: ");
-        head = Integer.parseInt(input.nextLine());
+        head =  Validation.Inputter.inputInteger("Enter initial head position: ", false);
 
         queue = new int[qSize + 1];
 

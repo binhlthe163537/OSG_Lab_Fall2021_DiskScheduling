@@ -19,7 +19,7 @@ public class Inputter {
     private final static String errM_NotAnPositiveInteger = "Input must be a positive integer!";
     private final static String errM_NotMatches = "Please enter the true form ";
     private final static String errM_NotInRange = "Please enter number in range";
-    static Scanner sc = new Scanner(System.in);
+    static Scanner sc;
     /**
      *
      * @param msg
@@ -29,11 +29,11 @@ public class Inputter {
     public static String inputString(String msg, boolean isEmpty) {
         sc = new Scanner(System.in);
         String result;
-        while (true) {
-            try {
+        while (true) 
+        {
                 System.out.print(msg);
                 result = sc.nextLine();
-                if (result.replaceAll("\\s+", "").isEmpty()) {
+                if (normalize(result).isEmpty()) {
                     if (isEmpty) {
                         return null;
                     } else {
@@ -43,9 +43,6 @@ public class Inputter {
                         sc = new Scanner(System.in);
                         return result;
                     }
-                } catch (Exception e) {
-                System.err.println(ERRM);
-            }
         }
     }
 

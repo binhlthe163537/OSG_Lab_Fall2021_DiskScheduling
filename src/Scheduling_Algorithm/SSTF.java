@@ -1,7 +1,6 @@
 package Scheduling_Algorithm;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import MyInit.Init;
 import java.io.File;
@@ -13,7 +12,6 @@ public class SSTF {
     final static int LOW = 0;
     final static int HIGH = 199;
     public static void main(){
-        Scanner input = new Scanner(System.in);
         ArrayList<Integer> queue = new ArrayList<>();
         int[] queue2;
 
@@ -24,13 +22,13 @@ public class SSTF {
 
         System.out.println("SSTF Disk Scheduling");
 
-        System.out.print("Enter queue size: ");
-        qSize = Integer.parseInt(input.nextLine());
+
+        qSize = Validation.Inputter.inputInteger("Enter queue size: ", false);
 
         queue2 = new int[qSize];
 
-        System.out.print("Enter initial head position: ");
-        head = Integer.parseInt(input.nextLine());
+        head = Validation.Inputter.inputInteger("Enter initial head position: ", false);
+
         
         System.out.println("Input Elements: ");
         if (Validation.Inputter.isRanDom("You want to random " + qSize + " location(s)? (y/n): ")) 
@@ -82,7 +80,6 @@ public class SSTF {
     {
         System.out.println(e);
     }
-        input.close();
         System.out.println("\nData are successfully saved in Output.txt");
     }
 }
